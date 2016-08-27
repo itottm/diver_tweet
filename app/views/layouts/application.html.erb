@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DiverTweet</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <header>
+    <h1>Diver Tweet</h1>
+    <ul>
+      <li><%= link_to 'ホーム', root_path %></li>
+      <li><%= link_to 'つぶやく', new_tweet_path %></li>
+    </ul>
+  </header>
+
+<%= yield %>
+
+</body>
+</html>

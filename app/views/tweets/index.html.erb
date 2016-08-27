@@ -1,0 +1,34 @@
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-sm-12 index_tweet_box">
+            <%= form_for(@tweet, url: confirm_tweets_path) do |f| %>
+                <%= f.text_area :content, class: 'form-control' %>
+                <%= f.submit "つぶやく", class: 'btn btn-primary btn-block' %>
+            <% end %>
+        </div>
+
+        <div class="tweet_list_wrapper col-md-8 col-sm-12">
+            <% if flash[:notice] %>
+                <div class="alert alert-success">
+                    <%= flash[:notice] %>
+                </div>
+            <% end %>
+            
+            <ol class="tweet_list">
+                <% @tweets.reverse_each do |tweet| %>
+                    <li>
+                        <p class="tweet_text"><%= tweet.content %></p>
+                        <p class="text-right"><%= time_ago_in_words(tweet.created_at) + "前"  %></p>
+                        <ul class="list-inline text-right">
+                            <li><%= link_to '編集する', edit_tweet_path(tweet.id), class: 'btn btn-default btn-sm btn-success' %></li>
+                            <li><%= link_to '削除する', tweet_path(tweet.id), method: :delete, data: {confirm: '本当に削除しますか？'}, class: 'btn btn-default btn-sm btn btn-danger' %></li>
+                        </ul>
+                    </li>
+                <% end %>
+                <li id="page-top-btn" class="text-center"><a href="#" id="move-page-top">ページトップへ戻る</a></li>
+            </ol>
+        </div>
+    </div>
+
+</div>
